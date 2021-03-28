@@ -255,3 +255,90 @@
   });
 
 })()
+
+
+// alert box js
+
+// Example POST method implementation:
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+function sendMessage() {
+  const name=document.getElementById('name').value;
+  const email=document.getElementById('email').value;
+  const message=document.getElementById('message').value;
+  const whatsappNumber=document.getElementById('number').value;
+  if (!name||!email||!message||!whatsappNumber) {
+    const alerts=document.querySelector('.alert');
+    const fas=document.querySelector('.fas');
+    const msg=document.querySelector('.msg');
+    fas.classList.remove('fa-check-circle');
+    fas.classList.add('fa-exclamation-triangle');
+    msg.innerHTML='Error:Please Add complete info and Try agin!! ';
+    msg.style.color = "red";
+      alerts.classList.add("show");
+      alerts.classList.remove('hide');
+      alerts.classList.add('showAlert');
+      setTimeout(function(){
+            alerts.classList.remove("show");
+            alerts.classList.add("hide");
+          },6000);
+  return;
+  }
+
+  postData(
+    'https://webzecos.herokuapp.com/sendEmail', 
+  {
+    name,
+    email,
+    message,
+    whatsappNumber
+  })
+    .then(data => {
+      const alerts=document.querySelector('.alert');
+        alerts.classList.add("show");
+        alerts.classList.remove('hide');
+        alerts.classList.add('showAlert');
+        setTimeout(function(){
+              alerts.classList.remove("show");
+              alerts.classList.add("hide");
+            },5000);
+    }).catch(err=>{
+      const alerts=document.querySelector('.alert');
+      const fas=document.querySelector('.fas');
+      const msg=document.querySelector('.msg');
+      fas.classList.remove('fa-check-circle');
+      fas.classList.add('fa-exclamation-triangle');
+      msg.innerHTML='Error:something went wrong.. Try agin!! ';
+      msg.style.color = "red";
+        alerts.classList.add("show");
+        alerts.classList.remove('hide');
+        alerts.classList.add('showAlert');
+        setTimeout(function(){
+              alerts.classList.remove("show");
+              alerts.classList.add("hide");
+            },5000);
+          });
+}
+document.querySelector('.close-btn').addEventListener('click',e=>{
+          const alerts=document.querySelector('.alert');
+            alerts.classList.add("hide");
+            alerts.classList.remove('show');
+        })
+        
+// end of alerts
