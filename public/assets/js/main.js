@@ -257,6 +257,7 @@
 })()
 
 
+
 // alert box js
 
 // Example POST method implementation:
@@ -284,25 +285,26 @@ function sendMessage() {
   const message=document.getElementById('message').value;
   const whatsappNumber=document.getElementById('number').value;
   if (!name||!email||!message||!whatsappNumber) {
-    const alerts=document.querySelector('.alert');
-    const fas=document.querySelector('.fas');
-    const msg=document.querySelector('.msg');
-    fas.classList.remove('fa-check-circle');
-    fas.classList.add('fa-exclamation-triangle');
-    msg.innerHTML='Error:Please Add complete info and Try agin!! ';
-    msg.style.color = "red";
-      alerts.classList.add("show");
-      alerts.classList.remove('hide');
-      alerts.classList.add('showAlert');
-      setTimeout(function(){
-            alerts.classList.remove("show");
-            alerts.classList.add("hide");
-          },6000);
+    // const alerts=document.querySelector('.alert');
+    // const fas=document.querySelector('.fas');
+    // const msg=document.querySelector('.msg');
+    // fas.classList.remove('fa-check-circle');
+    // fas.classList.add('fa-exclamation-triangle');
+    // msg.innerHTML='Error:Please Add complete info and Try agin!! ';
+    // msg.style.color = "red";
+    //   alerts.classList.add("show");
+    //   alerts.classList.remove('hide');
+    //   alerts.classList.add('showAlert');
+    //   setTimeout(function(){
+    //         alerts.classList.remove("show");
+    //         alerts.classList.add("hide");
+    //       },6000);
+    alert('Error:Please Add complete info and Try agin!! ');
   return;
   }
 
   postData(
-    'https://webzecos.herokuapp.com/sendEmail', 
+    'https://webzecos.herokuapp.com/sendEmail',
   {
     name,
     email,
@@ -310,35 +312,40 @@ function sendMessage() {
     whatsappNumber
   })
     .then(data => {
-      const alerts=document.querySelector('.alert');
-        alerts.classList.add("show");
-        alerts.classList.remove('hide');
-        alerts.classList.add('showAlert');
-        setTimeout(function(){
-              alerts.classList.remove("show");
-              alerts.classList.add("hide");
-            },5000);
+    //   const alerts=document.querySelector('.alert');
+    //     alerts.classList.add("show");
+    //     alerts.classList.remove('hide');
+    //     alerts.classList.add('showAlert');
+    //     setTimeout(function(){
+    //           alerts.classList.remove("show");
+    //           alerts.classList.add("hide");
+    //         },5000);
+        alert('Sucess: Message Devliverd !! ');
+
     }).catch(err=>{
-      const alerts=document.querySelector('.alert');
-      const fas=document.querySelector('.fas');
-      const msg=document.querySelector('.msg');
-      fas.classList.remove('fa-check-circle');
-      fas.classList.add('fa-exclamation-triangle');
-      msg.innerHTML='Error:something went wrong.. Try agin!! ';
-      msg.style.color = "red";
-        alerts.classList.add("show");
-        alerts.classList.remove('hide');
-        alerts.classList.add('showAlert');
-        setTimeout(function(){
-              alerts.classList.remove("show");
-              alerts.classList.add("hide");
-            },5000);
-          });
+    //   const alerts=document.querySelector('.alert');
+    //   const fas=document.querySelector('.fas');
+    //   const msg=document.querySelector('.msg');
+    //   fas.classList.remove('fa-check-circle');
+    //   fas.classList.add('fa-exclamation-triangle');
+    //   msg.innerHTML='Error:something went wrong.. Try agin!! ';
+    //   msg.style.color = "red";
+    //     alerts.classList.add("show");
+    //     alerts.classList.remove('hide');
+    //     alerts.classList.add('showAlert');
+    alert('Error:something went wrong.. Try agin!! ');
+    console.log('error:',err);
+        // setTimeout(function(){
+        //       alerts.classList.remove("show");
+        //       alerts.classList.add("hide");
+        //     },5000);
+           });
 }
-document.querySelector('.close-btn').addEventListener('click',e=>{
-          const alerts=document.querySelector('.alert');
-            alerts.classList.add("hide");
-            alerts.classList.remove('show');
-        })
+// document.querySelector('.close-btn').addEventListener('click',e=>{
+//           const alerts=document.querySelector('.alert');
+//             alerts.classList.add("hide");
+//             alerts.classList.remove('show');
+//         })
         
 // end of alerts
+

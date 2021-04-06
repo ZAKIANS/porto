@@ -6,7 +6,7 @@ const overviewRouter = require('./routs/overviewRouts');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
-
+const port = 3000;
 if (process.env.NODE_ENV==='development') {
     app.use(require('morgan')('dev'));
 }
@@ -20,4 +20,4 @@ app.use('/', userRouter);
 //       res.sendFile('')
 // });
 
-app.listen(process.env.PORT, ()=>console.log(`app running on ${process.env.PORT}`));
+app.listen(port, ()=>console.log(`app running on ${port}`));
